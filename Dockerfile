@@ -1,5 +1,7 @@
-FROM nginx
-RUN apt-get update && apt-get install nginx -y
-COPY . /usr/share/nginx/html
+FROM node:7
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+COPY . /app
+CMD node index.js
 EXPOSE 8081
-CMD service nginx start
